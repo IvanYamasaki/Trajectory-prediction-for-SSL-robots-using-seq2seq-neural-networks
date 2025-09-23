@@ -1,6 +1,6 @@
 import pickle
 
-from kalman_smoother import KalmanSmoother
+from .kalman_smoother import KalmanSmoother
 import numpy as np
 
 
@@ -56,7 +56,7 @@ class Smoother:
         robots_y = {'position': {'x': [], 'y': []}, 'speed': {'x': [], 'y': []}, 'psi': [], 'stop_id': [], 'time_c': []}
         ball = {}
 
-        file = open(source_file + '.pkl', 'rb')
+        file = open('dataset/' + source_file + '.pkl', 'rb')
         data = pickle.load(file)
         self.process_robots_data(data['blue'], data['stop_id'], robots_b)
         self.process_robots_data(data['yellow'], data['stop_id'], robots_y)
@@ -68,6 +68,6 @@ class Smoother:
             'ball': ball,
         }
 
-        with open(dest_file + '.pkl', 'wb') as f:
+        with open('dataset/' + dest_file + '.pkl', 'wb') as f:
             pickle.dump(all_data, f)
 

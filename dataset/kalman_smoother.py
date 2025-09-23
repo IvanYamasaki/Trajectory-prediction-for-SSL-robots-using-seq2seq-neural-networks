@@ -1,6 +1,6 @@
 import pickle
 import typing
-import auto_ks
+from . import auto_ks
 import matplotlib.pyplot as plt
 import numpy as np
 

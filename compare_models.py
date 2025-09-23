@@ -6,7 +6,7 @@ from comparison_tests import MLPComparison, KalmanFilterComparison
 
 
 os.environ['CUDA_VISIBLE_DEVICES'] = '0'
-files = ['dataset/proc_set_3']
+files = ['dataset/proc_teste_1']
 
 
 def compare_models(look_back, look_forth, output_dims, robot_model_name, ball_model_name):

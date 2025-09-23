@@ -1,6 +1,6 @@
 import math
-from reader.Reader import Reader
-from reader.MessageType import MessageType
+from .reader.Reader import Reader
+from .reader.MessageType import MessageType
 import pickle
 
 
@@ -78,7 +78,7 @@ def add_ball_element(dic, elem, pkt):
 
 
 def process_log(path):
-    reader = Reader(path + '.log')
+    reader = Reader('dataset/' + path + '.log')
     reader.read_header()
     collect = False
     i = 0
@@ -93,6 +93,11 @@ def process_log(path):
         msg_type = reader.decode_msg()
         if msg_type == MessageType.MESSAGE_SSL_VISION_2010 or msg_type == MessageType.MESSAGE_SSL_VISION_2014:
             wrapper_packet = reader.get_wrapper_packet()
+            
+            # Adicione esta verificação de segurança
+            if wrapper_packet is None or wrapper_packet.detection is None:
+                continue
+
             # We discard the first packet to decrease noise
             if wrapper_packet.detection.t_capture == 0:
                 continue

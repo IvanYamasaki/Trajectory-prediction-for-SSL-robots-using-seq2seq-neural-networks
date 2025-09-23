@@ -134,7 +134,7 @@ class MLPComparison:
         # plt.title('Batch loss during training')
         # plt.plot(batch_logs.val_logs)
         # plt.title('Batch loss during validation')
-        self.model.compile(optimizer=tf.optimizers.Adam(), loss=tf.losses.mean_squared_error)
+        self.model.compile(optimizer=tf.optimizers.Adam(), loss=tf.losses.MeanSquaredError())
         self.model.save(model_name + '.h5')
 
     def test_model(self, file_path: list, model_name):

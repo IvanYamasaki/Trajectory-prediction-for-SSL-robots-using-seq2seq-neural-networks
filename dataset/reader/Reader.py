@@ -1,7 +1,6 @@
-import reader.gen.messages_robocup_ssl_wrapper_pb2 as SSL_Wrapper
-import reader.gen.ssl_referee_pb2 as SSL_referee
-from reader.MessageType import MessageType
-
+from .gen import messages_robocup_ssl_wrapper_pb2 as SSL_Wrapper
+from .gen import ssl_referee_pb2 as SSL_referee
+from .MessageType import MessageType
 
 class Reader:
 

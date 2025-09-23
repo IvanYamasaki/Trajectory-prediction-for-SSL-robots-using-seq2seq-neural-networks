@@ -1,15 +1,21 @@
 import pickle
 import matplotlib.pyplot as plt
-from kalman_smoother import SSLData, KalmanSmoother
+from .kalman_smoother import SSLData, KalmanSmoother
 import numpy as np
 
-
+# Define o arquivo que será usado para aprender os parâmetros do filtro.
+# Usamos o primeiro arquivo do seu novo conjunto de dados de treino.
+PARAMETER_LEARNING_FILE = 'dataset/treino_1.pkl'
 def get_robots():
-    f = open('data_set_1.pkl', 'rb')
-    robots = pickle.load(f)
-    robot_1 = robots['blue'][0][1]
-    robot_2 = robots['yellow'][0][2]
-    return robot_1, robot_2
+    """Carrega o arquivo de dados e pega os primeiros robôs de cada time."""
+    with open(PARAMETER_LEARNING_FILE, 'rb') as f:
+        data = pickle.load(f)
+    
+    # Pega o primeiro robô azul e o primeiro robô amarelo encontrados no log
+    # Isso evita erros caso os IDs dos robôs sejam diferentes nos novos logs
+    robot_blue = next(iter(data['blue'][0].values()))
+    robot_yellow = next(iter(data['yellow'][0].values()))
+    return robot_blue, robot_yellow
 
 
 def get_robot_position_series_params():
@@ -57,9 +63,11 @@ def get_robot_heading_series_params():
 
 
 def get_ball_position_series_params():
-    f = open('data_set_1.pkl', 'rb')
-    file_data = pickle.load(f)
+    with open(PARAMETER_LEARNING_FILE, 'rb') as f:
+        file_data = pickle.load(f)
+    
     ball = file_data['ball']
+    # Pega as duas primeiras sequências de bola disponíveis
     ball_1 = ball[1]
     ball_2 = ball[0]
 

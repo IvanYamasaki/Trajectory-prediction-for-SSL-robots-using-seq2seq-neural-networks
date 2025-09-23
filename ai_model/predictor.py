@@ -42,7 +42,7 @@ class Predictor(tf.keras.Model):
             return self._train_step(data)
 
     def save_model(self, name):
-        self.save_weights(name, save_format='tf')
+        self.save_weights(name + '.weights.h5')
 
     def load_model(self, name):
         self.load_weights(name).expect_partial()
