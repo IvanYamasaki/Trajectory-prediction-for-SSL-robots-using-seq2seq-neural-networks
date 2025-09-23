@@ -9,3 +9,10 @@ venv/
 
 # Ambiente virtual do Python
 venv/
+
+# Arquivos de pesos dos modelos
+*.weights.h5
+*.keras
+
+# Arquivos de dados processados
+*.pkl
