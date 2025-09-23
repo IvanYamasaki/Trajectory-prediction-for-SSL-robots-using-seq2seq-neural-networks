@@ -6,3 +6,6 @@ venv/
 
 # Pacotes de instalação Debian
 *.deb
+
+# Ambiente virtual do Python
+venv/
