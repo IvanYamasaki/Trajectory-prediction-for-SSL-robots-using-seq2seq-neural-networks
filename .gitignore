@@ -1,9 +1,3 @@
-# Ambiente virtual do Python
-venv/
-
-# Arquivos de dados processados (são grandes e podem ser gerados a partir dos logs)
-*.pkl
-
 # Pacotes de instalação Debian
 *.deb
 
