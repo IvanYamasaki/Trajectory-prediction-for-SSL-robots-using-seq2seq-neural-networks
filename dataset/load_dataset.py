@@ -190,28 +190,7 @@ class LoadDataSet:
             x_set = (robot_pair[i:(i + self.look_back), 0:5] - self.robots_avg[0:5]) / self.robots_std[0:5]
             y_set = (robot_pair[(i+self.look_back - 1):(i + self.look_back + self.look_forth-1), y_dim:4]
                      - self.robots_avg[y_dim:4])/self.robots_std[y_dim:4]
-            
-            # --- INÍCIO DO CÓDIGO DE NOVAS FEATURES ---
-
-            robot_past_unnormalized = robot_pair[i:(i + self.look_back)]
-            ball_past_unnormalized = ball_sorted_data * self.ball_std + self.ball_avg
-
-            dist_x = robot_past_unnormalized[:, 0] - ball_past_unnormalized[:, 0]
-            dist_y = robot_past_unnormalized[:, 2] - ball_past_unnormalized[:, 1]
-            distancia_robot_bola = np.sqrt(dist_x**2 + dist_y**2)
-
-            vel_rel_x = robot_past_unnormalized[:, 1] - ball_past_unnormalized[:, 2]
-            vel_rel_y = robot_past_unnormalized[:, 3] - ball_past_unnormalized[:, 3]
-            velocidade_relativa = np.sqrt(vel_rel_x**2 + vel_rel_y**2)
-            distancia_robot_bola = np.expand_dims(distancia_robot_bola, axis=1)
-            velocidade_relativa = np.expand_dims(velocidade_relativa, axis=1)
-            distancia_norm = (distancia_robot_bola - np.mean(distancia_robot_bola)) / (np.std(distancia_robot_bola) + 1e-6)
-            vel_rel_norm = (velocidade_relativa - np.mean(velocidade_relativa)) / (np.std(velocidade_relativa) + 1e-6)
-            x_set_expandido = np.concatenate([x_set, distancia_norm, vel_rel_norm], axis=1)
-            
-            data_x.append(x_set_expandido)
-
-
+            data_x.append(x_set)
             data_y.append(y_set)
             ball_x.append(ball_sorted_data)
             mask.append(ball_mask)
