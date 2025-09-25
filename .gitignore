@@ -1,13 +1,17 @@
-# Pacotes de instalação Debian
-*.deb
+# Ficheiros de log e dados brutos
+*.log
+*.gz
+
+# Ficheiros de cache do Python
+__pycache__/
 
 # Ambiente virtual do Python
 venv/
 
-# Arquivos de pesos dos modelos
+# Ficheiros de pesos dos modelos
 *.weights.h5
 *.keras
 *.h5
 
-# Arquivos de dados processados
+# Ficheiros de dados processados
 *.pkl
